@@ -16,8 +16,15 @@ Dashboard Interattiva: Utilizzando Streamlit, l'applicazione fornisce un'interfa
 
 Requisiti
 Python 3.x
+# File
+# Scaricare da https://leghe.fantacalcio.it/ il file Quotazioni_Fantacalcio_Stagione_2024_25.csv
 
 ![image](https://github.com/user-attachments/assets/bae840b1-b3b0-444e-a2bf-1c4d38e3f488)
 
 
-Per realizzare questo piccolo applicativo ho preso spunto da qui https://github.com/protti/ScraperFantacalcio/tree/master 
+Per realizzare questo piccolo applicativo ho preso spunto da qui https://github.com/protti/ScraperFantacalcio/tree/master
+
+# Eseguire in locale prima il file attributi.py (per eseguire lo scraping dei dati), poi parsing.py (per ottenere un .csv unico) ed infine app.py. Nei metodi di lettura, in tutti i file è necessario ricordarsi di personalizzare i PATH dei files
+
+
+# righe aggiunte
