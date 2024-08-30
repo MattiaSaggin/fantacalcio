@@ -4,7 +4,7 @@ from unidecode import unidecode
 
 # Funzione per caricare tutti i CSV in un unico DataFrame
 def load_all_csvs():
-    csv_files = glob.glob('meanSkill*.csv')
+    csv_files = glob.glob("C:\\Users\\matti\\codingProjects\\FantacalcioPythonAnalysis\\fanta-app\\meanSkill*.csv")
     data_frames = [pd.read_csv(file) for file in csv_files]
     return pd.concat(data_frames, ignore_index=True)
 
@@ -27,7 +27,7 @@ def get_matching_key(name):
 df = load_all_csvs()
 
 # Carica i dati dal file Excel
-df2 = pd.read_excel('/Quotazioni_Fantacalcio_Stagione_2024_25.xlsx', skiprows=1)
+df2 = pd.read_excel("C:\\Users\\matti\\Downloads\\Quotazioni_Fantacalcio_Stagione_2024_25.xlsx", skiprows=1)
 
 # Normalizza i nomi dei giocatori
 df['Nome'] = df['Nome'].apply(normalize_name)
@@ -62,4 +62,4 @@ def keep_row(group):
 df= df.groupby('Nome_csv').apply(keep_row).reset_index(drop=True)
 df.drop_duplicates(inplace=True)
 # Salva il DataFrame unito in un nuovo file CSV
-df.to_csv('/Users/umbertobertonelli/PycharmProjects/pythonProject4/dati_uniti.csv', index=False)
+df.to_csv("C:\\Users\\matti\\codingProjects\\FantacalcioPythonAnalysis\\fanta-app\\dati_uniti.csv", index=False)
