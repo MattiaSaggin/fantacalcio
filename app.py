@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 df = pd.read_csv("dati_uniti.csv")
 df=df[df['Ruolo']!='Ruolo']
 df['Punteggio FantaCalcioPedia'] = pd.to_numeric(df['Punteggio FantaCalcioPedia'], errors='coerce')
-df['Solidità fantainvestimento'] = pd.to_numeric(df['Solidità fantainvestimento'], errors='coerce')
+df['Solidita fantainvestimento'] = pd.to_numeric(df['Solidita fantainvestimento'], errors='coerce')
 df['Resistenza infortuni'] = pd.to_numeric(df['Resistenza infortuni'], errors='coerce')
 
 df = df.rename(columns={"Squadra_csv": "Squadra"})
@@ -86,7 +86,7 @@ st.title('Fanta 24-25')
 budget = st.number_input("Budget della lega", value=500)
 df['Prezzo'] = round((df['Punteggio FantaCalcioPedia'].max() / (budget / 25) *
                                       df["Punteggio FantaCalcioPedia"] *
-                                      (df['Solidità fantainvestimento'] / 100) *
+                                      (df['Solidita fantainvestimento'] / 100) *
                                       (df['Resistenza infortuni'] / 100)) * (
                                                  df["Qt.A"] / df["Qt.A"].max()))
 
@@ -216,7 +216,7 @@ if not df.empty:
 
         # Mostra il DataFrame filtrato e ordinato
         st.dataframe(df_filtrato[["Nome", "Squadra", "Ruolo", "ALG FCP", "Punteggio FantaCalcioPedia",
-                                  "Solidità fantainvestimento", "Resistenza infortuni", "Qt.A", "Attributi",
+                                  "Solidita fantainvestimento", "Resistenza infortuni", "Qt.A", "Attributi",
                                   "Gol previsti", "Presenze previste", "Assist previsti", "Prezzo"]])
 else:
     st.warning("Nessun dato disponibile per la visualizzazione.")
@@ -252,7 +252,7 @@ with st.expander("Seleziona i calciatori e imposta la fascia"):
             # Crea un DataFrame con le informazioni dei calciatori e le loro fasce
             fasce_df_selezionati = pd.DataFrame(list(fasce_selezionate.items()), columns=['Nome', 'Fascia'])
 
-            # Controlla se il file CSV esiste già
+            # Controlla se il file CSV esiste gia
             if os.path.exists('fasce_calciatori.csv'):
                 # Leggi il CSV esistente
                 fasce_df_esistente = pd.read_csv('fasce_calciatori.csv')
@@ -280,7 +280,7 @@ with st.expander(f"Griglia fasce"):
         # Se il file esiste, crea un DataFrame
         fasce_selezionate = pd.read_csv(file_path)
         fasce_selezionate_op=fasce_selezionate.merge(df,on='Nome')[["Nome", "Squadra", "Ruolo", "ALG FCP", "Punteggio FantaCalcioPedia",
-                                  "Solidità fantainvestimento", "Resistenza infortuni", "Qt.A", "Attributi",
+                                  "Solidita fantainvestimento", "Resistenza infortuni", "Qt.A", "Attributi",
                                   "Gol previsti", "Presenze previste", "Assist previsti", "Prezzo",'Fascia']]
 
         ruoli_filtra_griglia=st.multiselect(
@@ -484,7 +484,7 @@ with col3:
                 skill_values = [
                     player_data['ALG FCP'],
                     player_data['Punteggio FantaCalcioPedia'],
-                    player_data['Solidità fantainvestimento'],
+                    player_data['Solidita fantainvestimento'],
                     player_data['Resistenza infortuni'],
                     player_data["Gol previsti"],
                     player_data["Presenze previste"],
@@ -494,7 +494,7 @@ with col3:
                 skill_names = [
                     'ALG FCP',
                     'Punteggio FantaCalcioPedia',
-                    'Solidità fantainvestimento',
+                    'Solidita fantainvestimento',
                     'Resistenza infortuni',
                     "Gol previsti",
                     "Presenze previste",
@@ -510,7 +510,7 @@ with col3:
 
                 acquisto = (df['Punteggio FantaCalcioPedia'].max() / (budget / 25) *
                             player_data["Punteggio FantaCalcioPedia"] *
-                            (player_data['Solidità fantainvestimento'] / 100) *
+                            (player_data['Solidita fantainvestimento'] / 100) *
                             (player_data['Resistenza infortuni'] / 100)) * (player_data["Qt.A"] / df["Qt.A"].max())
                 range_acquisto = {
                     'P': range_portieri,
@@ -523,7 +523,7 @@ with col3:
                 max_acquisto = max(1, acquisto * (1 + range_acquisto))
 
                 st.write(
-                    f'{selected_player} per fantagazzetta vale {player_data["Qt.A"]}, il sistema stima un prezzo di {acquisto:.0f} (considerando i dati di Fantapedia relativi a Fantamedia, resistenza infortuni, solidità investimento e Budget) con range consigliato: {min_acquisto:.0f}-{max_acquisto:.0f} crediti')
+                    f'{selected_player} per fantagazzetta vale {player_data["Qt.A"]}, il sistema stima un prezzo di {acquisto:.0f} (considerando i dati di Fantapedia relativi a Fantamedia, resistenza infortuni, solidita investimento e Budget) con range consigliato: {min_acquisto:.0f}-{max_acquisto:.0f} crediti')
                 st.write(
                     f'{selected_player} gol previsti {player_data["Gol previsti"]}, assist previsti {player_data["Assist previsti"]}, presenze previste {player_data["Presenze previste"]}, attributi {player_data["Attributi"]},')
                 st.write(f'{"Rilancia" if proposta < acquisto else "Valuta" if proposta < max_acquisto else "Molla"}')
