@@ -7,7 +7,7 @@ from statistics import mean
 st.set_page_config(layout="wide")
 
 # Carica i dati dal CSV
-df = pd.read_csv(r"C:\Users\matti\codingProjects\FantacalcioPythonAnalysis\fanta-app\dati_uniti.csv")
+df = pd.read_csv("dati_uniti.csv")
 df=df[df['Ruolo']!='Ruolo']
 df['Punteggio FantaCalcioPedia'] = pd.to_numeric(df['Punteggio FantaCalcioPedia'], errors='coerce')
 df['Solidità fantainvestimento'] = pd.to_numeric(df['Solidità fantainvestimento'], errors='coerce')
